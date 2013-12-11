@@ -1,0 +1,29 @@
+//definition file for class Driver
+//follow prompts below
+
+public class Driver { 
+
+    public static void main( String[] args ) {
+
+	String greeting;  /* Q: Why does visibility specification 
+			     not make sense here? */
+
+	//instantiate 3 of your own BigSibs below
+	BigSib richard = new BigSib();    
+
+
+	//set each BigSib's message
+	richard.setHelloMsg("Word up");
+
+
+	//reuse the greeting var to display each of your BigSib's greetings
+	greeting = richard.greet("freshman");
+	System.out.println(greeting);
+
+	/* Q: The statement below does not work. What single word 
+	   can you change in BigSib.java to enable it to work? */
+	//System.out.println(richard.helloMsg);
+
+    } //end main()
+
+} //end Driver
