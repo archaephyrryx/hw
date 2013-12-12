@@ -19,6 +19,11 @@
 
   =====================================*/
 
+// Peter Duchovni (with Christopher Kim, Daniel Zabari)
+// Period 9
+// HW 42
+// December 11, 2013
+
 import java.io.*; 
 import java.util.*;
 
@@ -52,12 +57,13 @@ public class CandidatePool {
     public Candidate getBestCandidate( String pos ) { 
 	ArrayList<Candidate> subPool = getCandidatesForPosition(pos);
 	Candidate bestCandidate = (Candidate) null;
-	double bestScore = NEGATIVE_INFINITY;
+	double bestScore = java.lang.Double.NEGATIVE_INFINITY;
+	double score;
 
 	for (Candidate cand : subPool) {
-	    double score = cand.getInterviewScore();
+	    score = cand.getInterviewScore();
 
-	    if (score.compareTo(bestScore) > 0) {
+	    if (score > bestScore) {
 		bestScore = score;
 		bestCandidate = cand;
 	    }
@@ -68,10 +74,9 @@ public class CandidatePool {
 
 
     public int removeCandidatesForPosition( String pos ) {
-	ArrayList<Candidate> subPool = getCandidatesForPosition();
+	ArrayList<Candidate> subPool = getCandidatesForPosition(pos);
 	pool.removeAll(subPool);
 	return subPool.size();
     }
+}
 
-
-}//end class CandidatePool
