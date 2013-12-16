@@ -8,7 +8,6 @@ public class Tile {
     private String _face;
     private boolean _isFaceUp;
 
-    //constructor
     public Tile( String value ) {
 	_face = value;
 	_isFaceUp = false;
@@ -25,20 +24,13 @@ public class Tile {
 	    return "-X-";
     }
 
-    //*** YOU WILL NEED TO IMPLEMENT EQUALS ***
-    //	  ...(use the hints below)
-
-    //overridden equals method
     public boolean equals( Object rightSide ) {
-
-	//First, check for aliasing.
-
-	//Next, if this and input Object are different objects,
-
-	    //...check to see if input Object is a Tile
-
-		//...and that its state variables match those of this Tile
-
+	return (this == rightSide || (
+		    rightSide instanceof Tile &&
+		    rightSide.toString() == _face &&
+		    rightSide.isFaceUp() == _isFaceUp
+		    )
+		);
     }
 
  
