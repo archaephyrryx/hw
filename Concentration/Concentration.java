@@ -23,6 +23,12 @@ public class Concentration {
 
 
     // *** INSERT YOUR CONSTRUCTOR AND METHODS HERE ***
+    public Concentration() {
+	_board = new ArrayList<Tile>(16);
+	
+
+
+    }
 
 
     //DO NOT MODIFY main()
