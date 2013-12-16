@@ -1,41 +1,7 @@
-/*===========================================
-An AP-style question, for practice:
-Write the StatPrinter class below. The StatPrinter Object receives an
-ArrayList of nonnegative integers, then builds a frequency ArrayList in which
-the index values are the data and the entry at the index is the frequency.
-For example, if the received data is    2,3,2,5,1,3    then the frequency 
-list would be [0,1,2,2,0,1]. This is read as 0 zeroes, 1 one, 2 twos,
-2 threes, 0 fours, 1 five. The size of the frequency list is the equal to
-the maximum value of the data.
-
-A capability of the class is to calculate local modes from the frequency 
-list. A local mode is a value that is greater than the value at index-1 
-and greater than the value at index+1. A local mode is never at the end
-points of the list. For example, if the frequency list is [1,2,1,4,2,3,5] 
-then the local modes are 2 and 4.
-
-This class is also capable of printing a histogram of the frequencies, using
-‘*’s to indicate a frequency amount. To print a histogram, the user specifies
-the longest sequence of ‘*’s used and then all other values are printed in 
-proportion to this value. For example, if longest bar is 10 and the frequency
-list is [1,2,1,4,2,3,5] then the histogram printed looks like this:
-
-0 : **
-1 : ****
-2 : **
-3 : ********
-4 : ****
-5 : ******
-6 : **********
-
-For each method, state run time efficiency using Big O notation.
-
-Tips for Awesome:
-* Look over all fxns, think a bit, decide which to tackle first.
-	( Simplest?  Prerequisites? . . . )
-* Develop 1 fxn at a time, test it, then move to next.
-* For coding today, what extra code do you need to get past Mr. Compiler?
-===========================================*/
+// Peter Duchovni
+// Period 9
+// HW 42
+// December 15, 2013
 
 import java.util.ArrayList;
 
@@ -51,20 +17,32 @@ public class StatPrinter {
     //          _frequency.get(i) returns frequency of i in data
     //eg, for data [2,3,2,5,2,3]
     //  _frequency would be [0,0,3,2,0,1]
+    //  Runtime efficiency: O(N)
     public StatPrinter( ArrayList <Integer> data ) { 
-	for (Integer i : data) {
-	    if ival > 
-	    _frequency.set(ival, (Integer) _frequency.get(ival) + 1);
-	}
+	int m = max(data).intValue();
+	_frequency = new ArrayList<Integer>(m + 1);
 
+	for (int i = 0; i <= m; ++i)
+	    _frequency.add((new Integer(0)));
+
+	for (Integer i : data) {
+	    int ival = i.intValue();
+	    _frequency.set(ival, (Integer) (_frequency.get(ival) + 1));
+	}
     }
 
 
     //*************** QUESTION __ **************************
     //precond:  data.size() > 0
     //postcond: returns largest integer in data
+    //  Runtime efficiency: O(N)
     public Integer max( ArrayList <Integer> data ) { 
+	Integer maximum = data.get(0);
 
+	for (Integer elem : data)
+	    maximum = (maximum.compareTo(elem) >= 0) ? maximum : elem;
+
+	return maximum;
     }
 
 
@@ -78,23 +56,50 @@ public class StatPrinter {
     //    isLocalMode(0) -> false
     //    isLocalMode(1) -> true
     //    isLocalMode(5) -> true
+    //  Runtime efficiency: O(1)
     public boolean isLocalMode( int i ) { 
+	return (i > 0 &&
+	        i < _frequency.size() - 1 && 
+		_frequency.get(i-1).compareTo(_frequency.get(i)) < 0 &&
+		_frequency.get(i+1).compareTo(_frequency.get(i)) < 0);
 
     }
 
 
     //*************** QUESTION __ **************************
     //postcond: returns list of modes in _frequency
+    //  Runtime efficiency: O(N)
     public ArrayList <Integer> getLocalModes() {
+	ArrayList<Integer> localmodes = new ArrayList<Integer>();
+
+	for (int i = 0; i < _frequency.size(); ++i)
+	    if (isLocalMode(i))
+		localmodes.add((Integer) i);
+
+	return localmodes;
 
     }
+
+    /* For testing
+    public String toString() { 
+	String ret = "[";
+	if (_frequency.size() > 0) {
+	    ret += _frequency.get(0);
+	    for (int i = 1; i < _frequency.size(); ++i)
+	        ret += ", " + _frequency.get(i);
+	}
+	ret += "]\n";
+	return ret;
+    }
+    */
 
 
     //*************** QUESTION __ **************************
     //precond:  longestBar > 0
+    //  Runtime efficiency: O(N)
     public void printHistogram( int longestBar ) { 
 	double scale = (longestBar)/((double) max(_frequency).intValue());
-	for (int i = 0; i < _frequency.size; ++i) {
+	for (int i = 0; i < _frequency.size(); ++i) {
 	   System.out.printf("%d: ", i);
 	   int stars = (int) ((_frequency.get(i).intValue()) * scale );
 	   while ((stars--) > 0) {
