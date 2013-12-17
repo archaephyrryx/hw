@@ -25,12 +25,14 @@ public class Tile {
     }
 
     public boolean equals( Object rightSide ) {
-	return (this == rightSide || (
-		    rightSide instanceof Tile &&
-		    rightSide.toString() == _face &&
-		    rightSide.isFaceUp() == _isFaceUp
-		    )
-		);
+	if (this == rightSide)
+	    return true;
+	if (rightSide instanceof Tile) {
+	   Tile other = (Tile) rightSide; 
+	    if (other.toString() == toString() && other.isFaceUp() == _isFaceUp)
+		return true;
+	}
+	return false;
     }
 
  
