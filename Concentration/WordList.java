@@ -7,6 +7,7 @@ public class WordList {
 	_list = new ArrayList<String>();
     }
 
+<<<<<<< HEAD
     public WordList(ArrayList<String> list) {// Constructor with arraylist arg
 	this();
 	_list.addAll(list);
@@ -14,6 +15,24 @@ public class WordList {
 
     public void add(String s) {// Mutator method to append given value
 	_list.add(s);
+=======
+    public Wordlist() {
+	String[] list = {"ape","bat","cat","dog","eel","fog","goo","hat"};
+	this(list);
+    }
+    public Wordlist(String[] list) {
+	myList = new ArrayList<String>(Array.asList(list));
+    }
+
+    public int numWordsOfLength(int len) { 
+	int num = 0;
+	for (String word : myList) {
+	    if (word.length() == len) {
+		num++;
+	    }
+	}
+	return num;
+>>>>>>> 4f63a56... Foobar edits
     }
 
 
