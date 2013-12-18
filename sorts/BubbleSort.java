@@ -2,24 +2,22 @@
   class BubbleSort -- implements bubblesort algorithm
   ======================================*/
 
-import java.util.ArrayList;
-
 public class BubbleSort {
 
     //precond: lo < hi && size > 0
-    //postcond: returns an ArrayList of random integers
+    //postcond: returns an Array of random INts
     //          from lo to hi, inclusive
-    public static ArrayList populate( int size, int lo, int hi ) {
-	ArrayList<Integer> retAL = new ArrayList<Integer>();
+    public static int[] populate( int size, int lo, int hi ) {
+	int[] retINA = new int[size];
 
 	//***INSERT YOUR CODE HERE***
 
-	return retAL;
+	return retINA;
     }
 
 
     //randomly rearrange elements of an ArrayList
-    public static void shuffle( ArrayList al ) {
+    public static void shuffle( int[] ina ) {
 	//***INSERT YOUR CODE HERE***
 
     }
@@ -28,17 +26,23 @@ public class BubbleSort {
     // VOID version of bubbleSort
     // Rearranges elements of input ArrayList
     // postcondition: data's elements sorted in ascending order
-    public static void bubbleSortV( ArrayList<Comparable> data ) {
-
-	//***INSERT YOUR CODE HERE***
-
+    public static void bubbleSortV( int[] data ) {
+	for (int i = 0; i < data.length; ++i) {
+	    for (int j = 1; j < data.length; ++j) {
+		if (data[j] < data[j-1]) {
+		    data[j-1] += data[j];
+		    data[j] = data[j-1] - data[j];
+		    data[j-1] -= data[j];
+		}
+	    }
+	}
     }//end bubbleSortV -- O(?)
 
 
     // ArrayList-returning bubbleSort
     // postcondition: order of data's elements unchanged
     //                Returns sorted copy of data.
-    public static ArrayList<Comparable> bubbleSort( ArrayList<Comparable> input ) {
+    public static ArrayList<Comparable> bubbleSort( int[] input ) {
 	//declare and initialize empty ArrayList for copying
 	ArrayList<Comparable> data = new ArrayList<Comparable>();
 
