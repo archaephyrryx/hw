@@ -1,0 +1,29 @@
+//definition for class BigSib
+//follow prompts below
+
+public class BigSib {
+
+    /* by convention, 
+       instance variables go at the top of a class definition */
+
+    //BigSib instance vars
+    private String helloMsg;
+
+
+    /* by convention, 
+       methods appear below instance vars in a class definition */ 
+
+    //BigSib methods
+    public void setHelloMsg( String newMsg ) {
+
+	//your implementation goes here
+
+    }
+
+    public String greet( String name ) {
+
+	//your implementation goes here
+
+    } //end greet()
+
+} //end class BigSib
