@@ -1,0 +1,45 @@
+public class BankAccount{
+  public String accountName;
+  public String accountPassword;
+  public int accountPIN;
+  public int accountNumber;
+  public float accountBalance;
+
+  private static String toString(int i)
+  private static String toString(float i)
+
+  public void setName( String name ) {
+    accountName = name;
+  }
+  public void setPassword( String password ) {
+    accountPassword = password;
+  }
+  public void setPIN( int pin ) {
+    accountPIN = pin;
+  }
+  public void setAccountNumber( int number ) {
+    accountNumber = number;
+  }
+  public void setAccountBalance( int balance ) {
+    accountBalance = balance;
+  }
+
+  public void printInfo() {
+    System.out.println("Name: " + accountName);
+    System.out.println("Password: " + accountPassword);
+    System.out.println("PIN: " + Integer.toString(accountPIN));
+    System.out.println("Account Number: " + Integer.toString(accountNumber));
+    System.out.println("Account Balance: $" + Float.toString(accountBalance));
+  }
+
+  public void deposit( float amount ) {
+    if (amount > 0) {
+      accountBalance += amount;
+    }
+  }
+  public void withdraw( float amount ) {
+    if (amount > 0 && amount <= accountBalance) {
+      accountBalance -= amount;
+    }
+  }
+}
