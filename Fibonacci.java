@@ -8,27 +8,14 @@ public class Fibonacci {
     }
 
     public static int tibonacci( int n ) {
-	return fibonacci_tail( n, 0, 0, 0 );
+	return fibonacci_tail( n, 0, 1, 0 );
     }
 
-    // n: index of the fibonacci number to be found
-    // i: index of the fibonacci number j
-    // j: a fibonacci number
-    // k: the fibonacci number before j
     public static int fibonacci_tail( int n, int i, int j, int k ) {
-	if (i == n) {
-	    if (j == 0) {
-		return 1;
-	    } else {
-		return j;
-	    }
-	} else {
-	    if (j == 0 || j == 1) {
-		return fibonacci_tail( n, i+1, 1+k, 1);
-	    } else {
-		return fibonacci_tail( n, i+1, j+k, j);
-	    }
-	}
+	if (i == n)
+	    return j;
+	else
+	    return fibonacci_tail( n, i+1, j+k, j);
     }
 
     public static int fibonacci_iter( int n ) {
