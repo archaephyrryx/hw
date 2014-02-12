@@ -1,4 +1,4 @@
-public class Foo {
+public class Factorial {
 
     public static int factorial( int n ) {
 	if (n == 0) {
@@ -21,7 +21,7 @@ public class Foo {
     }
 
     public static void main( String[] args ) {
-	System.out.println( Foo.factorial(6)   );
-	System.out.println( Foo.tactorial(6) );
+	System.out.println( Factorial.factorial(6)   );
+	System.out.println( Factorial.tactorial(6) );
     }
 }
