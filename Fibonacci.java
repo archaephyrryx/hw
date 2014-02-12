@@ -1,4 +1,15 @@
+import java.util.*;
+
 public class Fibonacci {
+    protected ArrayList<Integer> known_fibs;
+
+    public Fibonacci() {
+	known_fibs = new ArrayList<Integer>();
+	known_fibs.add(Integer.valueOf(1));
+	known_fibs.add(Integer.valueOf(1));
+    }
+
+
     public static int fibonacci( int n ) {
 	if (n == 0 || n == 1) {
 	    return 1;
@@ -25,11 +36,26 @@ public class Fibonacci {
 	return j;
     }
 
+    public int libonacci( int n ) {
+	int last = known_fibs.size() - 1;
+	if (last >= n) {
+	    return known_fibs.get(n).intValue();
+	} else {
+	    int penultimate = known_fibs.get(last - 1).intValue();
+	    int ultimate = known_fibs.get(last).intValue();
+	    int next = penultimate + ultimate;
+	    known_fibs.add(Integer.valueOf(next));
+	    return libonacci(n);
+	}
+    }
+
 
     public static void main( String[] args ) {
-
+	Fibonacci f = new Fibonacci();
 	System.out.println( Fibonacci.fibonacci(30) );
 	System.out.println( Fibonacci.fibonacci_iter(30) );
 	System.out.println( Fibonacci.tibonacci(30) );
+	System.out.println( f.libonacci(30) );
+	System.out.println( f.known_fibs );
     }
 }
