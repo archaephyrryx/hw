@@ -1,4 +1,4 @@
-all: Fibonacci.class Factorial.class
+all: Fibonacci.class Factorial.class Maze.class
 
 .SUFFIXES : .java .class
 
