@@ -1,19 +1,16 @@
-BUGS = CircleBug.java SpiralBug.java ZBug.java DancingBug.java
-RUNNERS = $(BUGS:%.java=%Runner.java)
-BUGOBJS = $(BUGS:%.java=%.class)
-RUNNEROBJS = $(RUNNERS:%.java=%.class)
-
-
 .SUFFIXES: .java .class
+
+all: CircleBugRunner.class SpiralBugRunner.class ZBugRunner.class \
+	DancingBugRunner.class JumperRunner.class
+
+CircleBugRunner.class: CircleBugRunner.java CircleBug.class
+ZBugRunner.class: ZBugRunner.java ZBug.class
+SpiralBugRunner.class: SpiralBugRunner.java SpiralBug.class
+DancingBugRunner.class: DancingBugRunner.java DancingBug.class
+JumperRunner.class: JumperRunner.java Jumper.class
 
 .java.class:
 	javac -cp ./gridworld.jar:. $<
-
-all: $(RUNNEROBJS)
-
-$(RUNNEROBJS): $(BUGOBJS) $(RUNNERS)
-
-$(BUGOBJS): $(BUGS)
 
 clean:
 	$(RM) *.class
