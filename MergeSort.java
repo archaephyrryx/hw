@@ -2,24 +2,24 @@ import java.util.ArrayList;
 
 public class MergeSort {
 
-    public static ArrayList<String> mergeSort( ArrayList<String> array ) {
+    public static ArrayList<Comparable> mergeSort( ArrayList<Comparable> array ) {
 		int l = array.size();
 
 		if (l <= 1) {
 		    return array;
 		} else {
-		    ArrayList<String> h1 = new ArrayList<String>(array.subList(0,l/2));
-		    ArrayList<String> h2 = new ArrayList<String>(array.subList(l/2,l));
+		    ArrayList<Comparable> h1 = new ArrayList<Comparable>(array.subList(0,l/2));
+		    ArrayList<Comparable> h2 = new ArrayList<Comparable>(array.subList(l/2,l));
 	    
-		    ArrayList<String> r1 = mergeSort( h1 );
-		    ArrayList<String> r2 = mergeSort( h2 );
+		    ArrayList<Comparable> r1 = mergeSort( h1 );
+		    ArrayList<Comparable> r2 = mergeSort( h2 );
 	    
 		    return merge(r1, r2);
 	    }
 	}
 
-	public static ArrayList<String> merge( ArrayList<String> r1, ArrayList<String> r2 ) {
-		ArrayList<String> merged = new ArrayList<String>();
+	public static ArrayList<Comparable> merge( ArrayList<Comparable> r1, ArrayList<Comparable> r2 ) {
+		ArrayList<Comparable> merged = new ArrayList<Comparable>();
 		
 		for (int i = 0, j = 0; i + j < r1.size() + r2.size();  ) {
 			merged.add( (
@@ -33,22 +33,22 @@ public class MergeSort {
 	}
 
     public static void main (String[] args) {
-    	ArrayList<String> foo = new ArrayList<String>();
+    	ArrayList<Comparable> foo = new ArrayList<Comparable>();
 
     	for (int i = 0; i < 1000; ++i) {
     		for (int j = 0; j < 1000; ++j) {
     			if (((int) (Math.random() * 1000) % (j+1)) == 0) {
-    				foo.add("" + j);
+    				foo.add(new Person("Alfred William the " + j + "th"));
     			}
     		}
     	}
 
-    	for ( String i : foo ) {
-    		System.out.printf(" %s ", i);
+    	for ( Comparable i : foo ) {
+    		System.out.printf(" %s ", i.toString());
     	}
     	System.out.println();
-    	for (String i : MergeSort.mergeSort(foo)) {
-    		System.out.printf(" %s ", i);
+    	for (Comparable i : MergeSort.mergeSort(foo)) {
+    		System.out.printf(" %s ", i.toString());
     	}
     	System.out.println();
     }
