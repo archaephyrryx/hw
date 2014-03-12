@@ -27,7 +27,6 @@ public class MergeSort {
 				      (i <  r1.size() &&
 				      r1.get(i).compareTo(r2.get(j)) <= 0 ) ) ?
 				      (r1.get(i++)) : (r2.get(j++)) ) );
-		}
 
 		return merged;
 	}
@@ -42,7 +41,6 @@ public class MergeSort {
     			}
     		}
     	}
-
     	for ( Comparable i : foo ) {
     		System.out.printf(" %s ", i.toString());
     	}
