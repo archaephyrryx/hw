@@ -1,0 +1,84 @@
+While an unsorted list can be searched by means of a linear search algorithm,
+which runs in amortized linear time, with an average of N/2 operations for a
+random permutation, it is possible to implement a higher-performance binary
+search algorithm on a sorted list, which runs in amortized logarithmic time.
+A psuedocode sketch for the algorithm and run-time specifications are provided below:
+
+
+bin_search(int[] a, int target) {
+    int m = a[a.len / 2]
+    if target == m:
+	// Found it!
+    if target < m:
+	    // Divide and conquer (Lower half)
+	h1 = first half of a;
+	bin_search(h1, target);
+	
+    if target > m:
+	    // Divide and conquer (Upper half)
+	h2 = second half of a;
+	bin_search(h2, target);
+	
+
+Explanation:
+
+For N = 2^M - 1 (Array is of size 2^M):
+
+0   = 0000...0000 base 2
+N/2 = 0111...1111 base 2
+N   = 1111...1111 base 2
+
+If X <= N/2:
+
+X <= 0111...1111 base 2
+X >= 0000...0000 base 2
+
+Therefore, X = 0???...???? base 2, so we have determined the first binary
+big-endian binary digit of X.
+
+If X > N/2:
+
+X <= 1111...1111 base 2
+X >= 1000...0000 base 2
+
+Therefore, X = 1???...???? base 2, so we have determined the first binary
+big-endian binary digit of X.
+
+Thus, each successive call of a binary search algorithm in effect determines one
+more bit in the binary representation of X, the desired index. Thus, the number
+of calls required is equal to the number of binary digits of N (log_2(N)) minus
+the highest power of 2 that divides into X. Thus, if X = 2^K * A, where A ==
+1%2, then the search requires (M - K) steps where M is the ceiling of log_2(N).
+By restricting the state-space of X to half of its previous size after every
+successive call, instead of reducing it by 1 as in linear search algorithms, we
+are guaranteeing a worst-case search-time of M, as opposed to 2^M for linear
+search. Moreover, we can even calculate the expected number of steps required:
+
+E(steps) = SUM( P(n steps) * n )
+         = 1 * P(1) + 2 * P(2) + ... + log(n) * P(log(n))
+	 = log(n) * (1/2)   {{ When X is odd }}
+	 + (log(n) - 1) * (1/4) {{ When X is even, but 2 mod 4 }}
+	 + (log(n) - 2) * (1/8) {{ When X is 0 mod 4, but 4 mod 8 }}
+	 .
+	 .
+	 .
+	 + 1 * (1/n)
+
+	 = log(n) * (1/2 + 1/4 + 1/8 + ... + 1/n) 
+	- (1/2)(1 * 1/2 + 2 * 1/2^2 + 3 * 1/2^3 + ... + (log(n) - 1)(1/2^(log(n) - 1)))
+
+	= (log(n) * (1 - 1/n) - (1/2)((1/2 + 1/4 + 1/8 + ...) + (1/2)(1/2 + 1/4 + 1/8) + ...) + ...)
+	= (1 - 1/n)log(n) - (1/2)((1 - 1/n)((1 - 1/n + 1/2 - 1/n + 1/4 - 1/n + 1/8 - 1/n + ... + 1/n - 1/n)))
+	= (1 - 1/n)log(n) - (1/2)((1 - 1/n)((1 + (1 - 1/n) - log(n)/n)))
+	= ((n-1)(log(n)))/(n)  - (2n^2 - 3n - (n-1)log(n))/(2n^2)
+	= ((2n^2 - 2n)(log(n)) - 2n^2 - 3n - (n-1)log(n))/(2n^2)
+	= (2n^2(log(n) - 1) - 3n(log(n) - 1) + (log(n) - 1) + 1)/(2n^2)
+	= (1 - 3/2n + 1/2n^2)(log(n) - 1) + 1/2n^2
+	= (1 - 1/2n)(1 - 1/n)(log(n) - 1) + 1/2n^2
+	= (1 - 1/2^(m+1))(1 - 1/2^(m))(m - 1) + 1/2^(2m + 1)
+
+For large m, this approaches (1)(1)(m-1) = m - 1, or about log(n/2), which is
+what we expect from the average linear search time.
+
+
+
