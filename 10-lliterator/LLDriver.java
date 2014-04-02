@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class LLDriver {
     public static void main( String[] args ) {
 	LinkedList<String> L = new LinkedList<String>();
@@ -13,11 +15,8 @@ public class LLDriver {
 	L.add("Ori");
 	L.add("Nori");
 
-	LLIterator<String> liter = L.iterator();
-
-	do {
-	    String dwarf = liter.next();
+	for (String dwarf : L) {
 	    System.out.printf("%s, at your service.\n", dwarf);
-	} while ( liter.hasNext() ); 
+	}
     }
 }

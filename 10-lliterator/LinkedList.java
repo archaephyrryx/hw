@@ -1,9 +1,11 @@
-public class LinkedList<E> {
+import java.util.Iterator;
+
+public class LinkedList<E> implements Iterable<E> {
     private Node<E> head;
     private Node<E> tail;
 
-    public LLIterator<E> iterator() {
-	return new LLIterator(head);
+    public Iterator<E> iterator() {
+	return new LLIterator(head.getNext());
     }
 
     public LinkedList() {

@@ -9,15 +9,17 @@ public class LLIterator<E> implements Iterator<E> {
     }
 
     public boolean hasNext() {
-	return (current.getNext() != null);
+	return (current!= null);
     }
     public E next() {
 	if (hasNext()) {
+	    E ret = current.getData();
 	    current = current.getNext();
-	    return current.getData();
+	    return ret;
 	}
 	return null;
     }
+
     public void remove() {
 	return;
     }
