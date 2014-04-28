@@ -9,6 +9,14 @@ public class RPN {
 	    s.push(Double.parseDouble(str));
 	    return;
 	}
+	if (str.equals("pi")) {
+	    s.push(Math.PI);
+	    return;
+	}
+	if (str.equals("e")) {
+	    s.push(Math.E);
+	    return;
+	}
 	if (str.equals("+")) {
 	    double y = s.pop();
 	    double x = s.pop();
@@ -49,6 +57,7 @@ public class RPN {
 	    s.push(1/x);
 	    return;
 	}
+
 	return;
     }
 

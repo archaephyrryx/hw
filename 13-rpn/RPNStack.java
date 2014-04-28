@@ -1,7 +1,7 @@
 public class RPNStack {
     class Entry {
 	double val;
-	Entry sub; // Subordinate sheet
+	Entry sub;
 
 	public Entry(double v) {
 	    val = v;
