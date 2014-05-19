@@ -1,0 +1,63 @@
+	  ------------------
+         /~~Peter Duchovni~~\
+--------/~~~~~~~~~~~~~~~~~~~~\-----------
+| HW #19 : Java Builtin Data Structures | 
+-----------------------------------------
+
+HashMaps vs. HashSets
+---------------------
+
+The Java builtin classes `HashMap` and `HashSet` are both based on a hash-table
+back-bone, but have different properties that provide each a specialized
+use-case. HashMaps have constant-time `put` and `get` operations, making them
+more useful for quick storage and retrieval of individual data from a large
+database. HashSets, on the other hand, more closely resemble the mathematical
+construct of 'sets', having constant-time `add` `delete` `contains` and `size`
+operations, making them more ideal for meta-database operations such as
+construction and verification, while HashMaps are more ideal for meta-data
+operations such as retrieving information about certain database members rather
+than merely verifying or modifying their membership.
+
+For example, HashSets are more useful for compiling a database of
+students enrolled in a class, as it is conducive to the addition or
+removal of students, testing whether a particular student is enrolled,
+and determining the total number of students; contrawise, HashMaps would
+be better for retrieving grades, attendance records, lists of enrolled
+classes, and other personalized information for any member of a database
+of enrolled students. Thus, the HashMap use-case is manipulation of data points,
+while the HashSet use-case is the manipulation of data sets.
+
+
+HashMaps and TreeMaps
+---------------------
+
+ >> HashMaps ::
+    Internally based on hash-tables, which are essentially arrays indexed by
+    hashed keys, with list structures containing all values mapped to keys with
+    a paricular hash attached at the corresponding index
+
+ >> TreeMaps ::
+    Internally based on tree-tables, which are essentially self-balancing binary
+    search trees whose nodes are sorted by key value and contain references to
+    the corresponding value of the key-value pair
+
+Speed Comparison
+----------------
+
+    ( Test Code Contained in SpeedTest.java, results shown below )
+
+TreeMap: 10000 additions in		   15670753 ns
+HashMap: 10000 additions in		   27467564 ns
+HashMap: 10000 keysearches in		    4549130 ns
+TreeMap: 10000 keysearches in		    5129003 ns
+HashMap: 10000 valuesearches in		 1110615825 ns
+TreeMap: 10000 valuesearches in		 1394652578 ns
+HashMap: key set found in		     172467 ns
+TreeMap: key set found in		     318292 ns
+TreeMap: values found in		      85176 ns
+HashMap: values found in		      86669 ns
+
+
+    Conclusions:
+	Treemap is faster for additions
+	Hashmap is fater for key-searches, value-searches, and key-set compilation
